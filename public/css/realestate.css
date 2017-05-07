@@ -6,3 +6,8 @@ body {
 h1 {
   font-family: 'Merriweather', serif;
 }
+
+.prop {
+  margin:10px;
+  padding: 5px;
+}

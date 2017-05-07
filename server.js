@@ -6,18 +6,23 @@ var path = require( 'path' );
 var mongoose = require( 'mongoose' );
 
 /// connect to mongo db
-// mongoose.connect( 'localhost:/27017/realestate' );
+mongoose.connect( 'localhost:27017/realestate' );
+
 
 /// define game schema
-// var gameSchema = mongoose.Schema({
-//   game: String,
-//   year: Number,
-//   platforms: String,
-//   imageUrlIn: String
-// }); //end schema
-/// create global game model
-// var game = mongoose.model( 'game', gameSchema );
+var listingSchema = mongoose.Schema({
+  "_id" : String,
+	"cost" : Number,
+  "rent": Number,
+	"sqft" : Number,
+	"city" : String,
+	"__v" : Number
+}); //end schema
 
+// / create global game model
+var listing = mongoose.model( 'listings', listingSchema );
+
+// console.log(listing.find());
 // uses
 app.use( express.static( 'public' ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
@@ -36,3 +41,12 @@ app.get( '/', function ( req, res ){
   console.log( 'base url hit' );
   res.sendFile( path.resolve( 'public/views/index.html' ) );
 }); //end home base
+
+//app.get
+app.get('/properties', function(req, res){
+  console.log('get all properties');
+  listing.find().then(function(data){
+    console.log(data);
+    res.send(data);
+  });//end album find
+});//end app.get
