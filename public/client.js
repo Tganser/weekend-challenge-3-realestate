@@ -1,8 +1,10 @@
 $(document).ready( function(){
   console.log("JQ sourced");
+
   //load all properties on DOM
   getAllProperties();
-  //event listeners
+
+  //event listener
   $("#submitbutton").on("click", addProperty);
 });
 
@@ -11,12 +13,14 @@ $(document).ready( function(){
 function getAllProperties(){
   console.log("in function get all properties on client");
 
+
   $.ajax({
     type: 'GET',
     url: '/properties',
     success: function(response) {
       // console.log('back from get properties with: ', response);
 
+      //creates the for sale property row
       for (var i = 0; i < response.length; i++) {
         if (response[i].cost === undefined){
           var infoR = '<div class="col-sm-2 prop col-centered">';
@@ -27,7 +31,7 @@ function getAllProperties(){
           infoR += "<p>City: " + response[i].city +"</p></div>";
           $("#for-rent").append(infoR);
         }
-
+        // creates the for rent property row
         if (response[i].rent === undefined){
           var infoS = '<div class="col-sm-2 prop col-centered">';
           infoS+= "<h3>For Sale</h3>";
@@ -42,58 +46,29 @@ function getAllProperties(){
   });//end of ajax
 }//end getAllProperties
 
+
+//this addProperty function isn't quite working. It looks like it creates the object, but it doesn't
+//send it to the database - this must be because of the schemas? Not sure.
 function addProperty(){
   console.log("submit clicked! In add property");
 
+//trying to get data off the radio buttons
   var rentCost = "undefined";
   var saleCost = "undefined";
-  // var typeProp = $("typeProp").val();
-  // console.log(typeProp);
 
   rentCost = $('input:radio[name=rent]:checked').val();
-  console.log(rentCost);
+  // console.log(rentCost);
   if (rentCost === "rent"){
     rentCost = $("#cost").val();
     console.log(rentCost);
   }
   saleCost = $('input:radio[name=sale]:checked').val();
-  console.log(saleCost);
+  // console.log(saleCost);
   if (saleCost === "sale"){
     saleCost = $("#cost").val();
     console.log(saleCost);
 
   }
-
-//   if ($("#sale").checked === true){
-//     console.log("FOR SALE PROPERTY!");
-//     saleCost = $("#cost").val();
-//       console.log("Cost: ",saleCost);
-//   }
-//
-// rentCost = $('input:radio[name=rent]:checked').val();
-// console.log(rentCost);
-// saleCost = $('input:radio[name=sale]:checked').val();
-// console.log(saleCost);
-
-
-  // if ($(this).checked === true){
-  //   console.log("FOR RENT PROPERTY!");
-  //   rentCost = $("#rent").val();
-  //     console.log("Cost: ",rentCost);
-  // }
-
-  // if (typeProp === "rent"){
-  //   rentCost = $("#cost").val();
-  //   console.log(rentCost);
-  // }
-  // if (typeProp === "sale"){
-  //   saleCost = $("#cost").val();
-  //   console.log(rentCost);
-  // }
-  // else {
-  //   console.log("error in sale/rental statement");
-  // }
-
 
   var propToSend = {
   	"cost" : saleCost,
@@ -103,10 +78,6 @@ function addProperty(){
   	"__v" : "0"
   };
 
-  // <input type="checkbox" name="sale" id="sale"> For Sale<br><input type="checkbox" name="rent" id="rent"> For Rent<br>
-  // Cost: <input type="number" name="cost" id="cost">
-  // Square Feet: <input type="number" name="sqft" id="sqft">
-  // City: <input type="text" name="city" id="city">
   console.log(propToSend);
 
   $.ajax({

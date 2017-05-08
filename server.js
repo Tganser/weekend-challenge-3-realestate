@@ -9,7 +9,7 @@ var mongoose = require( 'mongoose' );
 mongoose.connect( 'localhost:27017/realestate' );
 
 
-/// define game schema
+/// define schema
 var listingSchema = mongoose.Schema({
   "_id" : String,
 	"cost" : Number,
@@ -19,19 +19,17 @@ var listingSchema = mongoose.Schema({
 	"__v" : Number
 }); //end schema
 
-// / create global game model
+// / create global listing model
 var listing = mongoose.model( 'listings', listingSchema );
 
-// console.log(listing.find());
 // uses
 app.use( express.static( 'public' ) );
 app.use( bodyParser.urlencoded( { extended: true } ) );
 
 // globals
-// port set up to work with heroku OR localhost
 var port = process.env.PORT || 9998;
 
-//spin up server
+//set up server
 app.listen( port, function(){
   console.log( 'server up on:', port );
 }); // end server up
@@ -40,7 +38,7 @@ app.listen( port, function(){
 app.get( '/', function ( req, res ){
   console.log( 'base url hit' );
   res.sendFile( path.resolve( 'public/views/index.html' ) );
-}); //end home base
+}); //end get url
 
 //app.get
 app.get('/properties', function(req, res){
@@ -48,11 +46,12 @@ app.get('/properties', function(req, res){
   listing.find().then(function(data){
     // console.log(data);
     res.send(data);
-  });//end album find
+  });//end get properties
 });//end app.get
 
 app.post('/properties', function(req, res){
   console.log('in post property');
+  console.log(req.body);
   var newListing = listing(req.body);
   newListing.save();
   res.send(200);
