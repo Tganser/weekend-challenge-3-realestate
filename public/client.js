@@ -1,9 +1,12 @@
 $(document).ready( function(){
   console.log("JQ sourced");
-
+  //load all properties on DOM
   getAllProperties();
+  //event listeners
   $("#submitbutton").on("click", addProperty);
 });
+
+
 
 function getAllProperties(){
   console.log("in function get all properties on client");
@@ -47,17 +50,37 @@ function addProperty(){
   // var typeProp = $("typeProp").val();
   // console.log(typeProp);
 
-  if ($("#sale").checked === true){
-    console.log("FOR SALE PROPERTY!");
+  rentCost = $('input:radio[name=rent]:checked').val();
+  console.log(rentCost);
+  if (rentCost === "rent"){
+    rentCost = $("#cost").val();
+    console.log(rentCost);
+  }
+  saleCost = $('input:radio[name=sale]:checked').val();
+  console.log(saleCost);
+  if (saleCost === "sale"){
     saleCost = $("#cost").val();
-      console.log("Cost: ",saleCost);
+    console.log(saleCost);
+
   }
 
-  if ($("#rent").checked === true){
-    console.log("FOR RENT PROPERTY!");
-    rentCost = $("#rent").val();
-      console.log("Cost: ",rentCost);
-  }
+//   if ($("#sale").checked === true){
+//     console.log("FOR SALE PROPERTY!");
+//     saleCost = $("#cost").val();
+//       console.log("Cost: ",saleCost);
+//   }
+//
+// rentCost = $('input:radio[name=rent]:checked').val();
+// console.log(rentCost);
+// saleCost = $('input:radio[name=sale]:checked').val();
+// console.log(saleCost);
+
+
+  // if ($(this).checked === true){
+  //   console.log("FOR RENT PROPERTY!");
+  //   rentCost = $("#rent").val();
+  //     console.log("Cost: ",rentCost);
+  // }
 
   // if (typeProp === "rent"){
   //   rentCost = $("#cost").val();
