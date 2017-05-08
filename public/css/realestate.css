@@ -27,6 +27,11 @@ h3 {
   background-color: #829EB7;
   color:white;
 }
+.prop:hover {
+  position: relative;
+  cursor: pointer;
+  background-color: #96b4ce;
+}
 
 .col-centered{
   display:inline-block;
