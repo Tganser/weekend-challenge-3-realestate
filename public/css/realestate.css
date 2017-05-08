@@ -5,9 +5,47 @@ body {
 
 h1 {
   font-family: 'Merriweather', serif;
+  text-align: center;
+}
+
+h2 {
+  font-family: 'Merriweather', serif;
+  margin-left: 1.5em;
+  padding: 10px;
+  margin-bottom: auto;
+}
+
+h3 {
+  font-weight: bold;
 }
 
 .prop {
-  margin:10px;
-  padding: 5px;
+  margin:25px;
+  padding: 10px;
+  /*justify-content: center;*/
+  margin-bottom: 30px;
+  background-color: #829EB7;
+  color:white;
+}
+
+.col-centered{
+  display:inline-block;
+  float : none;
+  text-align:left;
+  margin-right:-4px;
+}
+
+.row-centered {
+    text-align : center;
+}
+
+.newprop {
+  margin: 15px;
+  padding-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.btn {
+  font-size: 1.25em;
+  background-color: #829EB7;
 }

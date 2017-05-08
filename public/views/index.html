@@ -12,21 +12,33 @@
   </head>
   <body>
     <div class="container">
-      <div class='jumbotron'><h1>Real estatessss</h1></div>
+      <div class='jumbotron'><h1>Unreal Real Estate</h1></div>
     </div>
     <div class="container">
-      <div id="for-sale">
-        For sale homes go here:
+      <h2>Properties For Sale</h2>
+      <div id="for-sale" class="row row-centered">
+        <!-- <h2>Properties For Sale</h2> -->
       </div>
     </div>
     <div class = "container">
-      <div id="for-rent">
-        For rent homes go here:
+      <h2>Properties For Rent</h2>
+      <div id="for-rent" class="row row-centered">
+        <!-- <h2>Properties For Rent</h2> -->
       </div>
     </div>
-    <div class="container">
+    <!-- <div class="container">
       <div id="allProp">
         all properties go here:
+      </div>
+    </div> -->
+    <h2>Add a property:</h2>
+    <div class="container">
+      <div class ="newprop">
+        <input type="checkbox" name="typeProp" id="sale" value="sale"> For Sale<br><input type="checkbox" name="typeProp" id="rent" value="rent"> For Rent<br>
+        Cost: <input type="number" name="cost" id="cost">
+        Square Feet: <input type="number" name="sqft" id="sqft">
+        City: <input type="text" name="city" id="city">
+        <button class="btn" id="submitbutton"> Submit</button>
       </div>
     </div>
   </body>

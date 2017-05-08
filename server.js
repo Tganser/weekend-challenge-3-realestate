@@ -46,7 +46,14 @@ app.get( '/', function ( req, res ){
 app.get('/properties', function(req, res){
   console.log('get all properties');
   listing.find().then(function(data){
-    console.log(data);
+    // console.log(data);
     res.send(data);
   });//end album find
 });//end app.get
+
+app.post('/properties', function(req, res){
+  console.log('in post property');
+  var newListing = listing(req.body);
+  newListing.save();
+  res.send(200);
+});//end of app post
